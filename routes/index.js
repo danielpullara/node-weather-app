@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const getCoord = require("../modules/getCoord");
-
+const getWeather = require("../modules/getWeather")
+ 
 /* GET home page. */
 
 
@@ -12,13 +13,9 @@ router.get("/weather",function(req,res){
   if(!query.city){
   return res.redirect("/")
 }
-getCoord(query.city)
+getCoord(res,query.city,getWeather)
 
-  //use coordinates to fetch weather
-  res.render("weather",{
-    city: query.city
-  })
- 
+
 })
 
 router.get('/', function(req, res, next) {
